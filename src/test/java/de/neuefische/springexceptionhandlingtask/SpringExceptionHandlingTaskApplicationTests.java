@@ -8,9 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.sql.Timestamp;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,8 +27,9 @@ public class SpringExceptionHandlingTaskApplicationTests {
     @Test
     void testGetAnimalSpecies_invalidSpecies() throws Exception {
         mockMvc.perform(get("/api/animals/cat"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{\"message\":\"Only 'dog' is allowed\"}"));
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{\"message\":\"Only 'dog' is allowed\"}"))
+                .andExpect(jsonPath("$.timestamp").exists());
     }
 
 
@@ -41,8 +43,9 @@ public class SpringExceptionHandlingTaskApplicationTests {
     @Test
     void testGetCarBrand_invalidBrand() throws Exception {
         mockMvc.perform(get("/api/cars/bmw"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{\"message\":\"Only 'porsche' allowed\"}"));
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{\"message\":\"Only 'porsche' allowed\"}"))
+                .andExpect(jsonPath("$.timestamp").exists());
     }
 
     @Test

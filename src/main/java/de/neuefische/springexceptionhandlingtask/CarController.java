@@ -17,11 +17,11 @@ public class CarController {
         return brand;
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ErrorMessage handleIllegalArgumentException(IllegalArgumentException e){
-        System.out.println("IllegalArgumentException: " + e.getMessage() + " local");
-        return new ErrorMessage(e.getMessage());
-    }
+//    @ExceptionHandler(IllegalArgumentException.class)
+//    public ErrorMessage handleIllegalArgumentException(IllegalArgumentException e){
+//        System.out.println("IllegalArgumentException: " + e.getMessage() + " local");
+//        return new ErrorMessage(e.getMessage());
+//    }
 
     @GetMapping
     String getAllCars() {

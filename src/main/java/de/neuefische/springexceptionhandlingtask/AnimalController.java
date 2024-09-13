@@ -17,10 +17,10 @@ public class AnimalController {
         return species;
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ErrorMessage handleIllegalArgumentExpection(IllegalArgumentException e){
-        return new ErrorMessage(e.getMessage());
-    }
+//    @ExceptionHandler(IllegalArgumentException.class)
+//    public ErrorMessage handleIllegalArgumentExpection(IllegalArgumentException e){
+//        return new ErrorMessage(e.getMessage());
+//    }
 
     @GetMapping
     String getAllAnimals() {

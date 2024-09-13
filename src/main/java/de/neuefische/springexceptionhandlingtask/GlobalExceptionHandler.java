@@ -16,13 +16,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorMessage handleIllegalArgumentException(RuntimeException e) {
         System.out.println("IllegalArgumentException: " + e.getMessage() + " Global");
-        return new ErrorMessage(e.getMessage());
+        return new ErrorMessage(e.getMessage(), Instant.now());
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorMessage handleException(Exception e) {
         System.out.println("ACHTUNG: " + e.getMessage() + "Global");
-        return new ErrorMessage(e.getMessage());
+        return new ErrorMessage(e.getMessage(), Instant.now());
     }
 }
